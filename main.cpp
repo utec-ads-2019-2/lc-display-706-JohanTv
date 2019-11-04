@@ -9,34 +9,34 @@ string value;
 
 void printRight(){
     for (int i = 0; i < col-1; ++i) {
-        cout<<" ";
+        putchar(' ');
     }
-    cout<<"|";
+    putchar('|');
 }
 void printLeft(){
-    cout<<"|";
+    putchar('|');
     for (int i = 0; i < col-1; ++i) {
-        cout<<" ";
+        putchar(' ');
     }
 }
 void printBothSides(){
-    cout<<"|";
+    putchar('|');
     for (int i = 0; i < col - 2; ++i) {
-        cout<<" ";
+        putchar(' ');
     }
-    cout<<"|";
+    putchar('|');
 }
 void printNull(){
     for (int i = 0; i < col; ++i) {
-        cout<<" ";
+        putchar(' ');
     }
 }
 void printMid(){
-    cout<<" ";
+    putchar(' ');
     for (int i = 0; i < col - 2; ++i) {
         cout<<"-";
     }
-    cout<<" ";
+    putchar(' ');
 }
 
 void printZero(){
@@ -138,24 +138,19 @@ map<int,void (*)()> printNumbers{{0,printZero},{1,printOne},{2,printTwo},
 
 int main() {
 
-    while(cin>>tam>>value){
+    while(cin>>tam>>value, tam){
         index = 0;
         row = 2*tam + 3;
         col = tam+2;
-        if(tam!=0){
         for(;index<row;++index){
-            for (auto item : value) {
-                (*printNumbers[item-'0'])();
-                cout<<" ";
+            for (int i = 0; i<value.size();++i) {
+                (*printNumbers[value[i]-'0'])();
+                if(i != value.size()-1) putchar(' ');
             }
-            cout<<endl;
+            puts("");
         }
-            cout<<endl;
-        }
-
+        puts("");
     }
-
-
 
     return 0;
 }
